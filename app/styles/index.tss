@@ -1,10 +1,59 @@
+".container[platform=android]": {
+	backgroundColor:"white",
+	navBarHidden:true
+}
 ".container[platform=ios]": {
 	backgroundColor:"black",
 	statusBarStyle: Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT
 },
 "#elementsList": {
-	backgroundColor:"white"
-}
+	backgroundColor:"white",
+	defaultItemTemplate:"elementTemplate",
+	separatorColor: "#999"
+},
 "#elementsList[platform=ios]": {
 	top: 20
+},
+"#elementsList[platform=android]": {
+	left: 15, right: 0
+},
+
+"#symbol": {
+	left: 15,
+	color: "black",
+	font: { fontSize: 34, fontWeight: 'bold' }
+},
+"#symbol[platform=android]": {
+	left: 0
 }
+"#atomProperties": {
+	top: 0, left: 80, right: 0, bottom: 0,
+	layout: "vertical"
+},
+"#atomProperties[platform=android]": {
+	left: 65
+},
+"#name": {
+	left: 0, top: 4,
+	color: "black",
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+	font: { fontSize: 16 }
+},
+"#secondLine": {
+	left: 0, right: 0,
+	layout: "horizontal"
+},
+".fieldLabel": {
+	color:"#999"
+},
+".line2": {
+	font: { fontSize: 10 }
+},
+"#number": {
+	width: 30,
+	color: 'red'
+},
+"#mass": {
+	color: "blue"
+}
+

@@ -1,125 +1,142 @@
 <Alloy>
 	<Window class="container">
 		<ListView id="elementsList">
+            <Templates>
+
+                <ItemTemplate name="elementTemplate">
+                    <Label bindId="symbol" id="symbol" />
+                    <View id="atomProperties">
+	                    <Label bindId="name" id="name" />
+	                    <View id="secondLine">
+	                    	<Label class="line2 fieldLabel" text="Number: " />
+		                    <Label class="line2" bindId="number" id="number" />
+	                    	<Label class="line2 fieldLabel" text="Atomic Mass: " />
+		                    <Label class="line2" bindId="mass" id="mass" />
+	                    </View>
+                    </View>
+                </ItemTemplate>
+
+            </Templates>
+
 			<ListSection name="elements">
-				<ListItem title="Hydrogen"/>
-				<ListItem title="Helium"/>
-				<ListItem title="Lithium"/>
-				<ListItem title="Beryllium"/>
-				<ListItem title="Boron"/>
-				<ListItem title="Carbon"/>
-				<ListItem title="Nitrogen"/>
-				<ListItem title="Oxygen"/>
-				<ListItem title="Fluorine"/>
-				<ListItem title="Neon"/>
-				<ListItem title="Sodium"/>
-				<ListItem title="Magnesium"/>
-				<ListItem title="Aluminium"/>
-				<ListItem title="Silicon"/>
-				<ListItem title="Phosphorus"/>
-				<ListItem title="Sulfur"/>
-				<ListItem title="Chlorine"/>
-				<ListItem title="Argon"/>
-				<ListItem title="Potassium"/>
-				<ListItem title="Calcium"/>
-				<ListItem title="Scandium"/>
-				<ListItem title="Titanium"/>
-				<ListItem title="Vanadium"/>
-				<ListItem title="Chromium"/>
-				<ListItem title="Manganese"/>
-				<ListItem title="Iron"/>
-				<ListItem title="Cobalt"/>
-				<ListItem title="Nickel"/>
-				<ListItem title="Copper"/>
-				<ListItem title="Zinc"/>
-				<ListItem title="Gallium"/>
-				<ListItem title="Germanium"/>
-				<ListItem title="Arsenic"/>
-				<ListItem title="Selenium"/>
-				<ListItem title="Bromine"/>
-				<ListItem title="Krypton"/>
-				<ListItem title="Rubidium"/>
-				<ListItem title="Strontium"/>
-				<ListItem title="Yttrium"/>
-				<ListItem title="Zirconium"/>
-				<ListItem title="Niobium"/>
-				<ListItem title="Molybdenum"/>
-				<ListItem title="Technetium"/>
-				<ListItem title="Ruthenium"/>
-				<ListItem title="Rhodium"/>
-				<ListItem title="Palladium"/>
-				<ListItem title="Silver"/>
-				<ListItem title="Cadmium"/>
-				<ListItem title="Indium"/>
-				<ListItem title="Tin"/>
-				<ListItem title="Antimony"/>
-				<ListItem title="Tellurium"/>
-				<ListItem title="Iodine"/>
-				<ListItem title="Xenon"/>
-				<ListItem title="Caesium"/>
-				<ListItem title="Barium"/>
-				<ListItem title="Lanthanum"/>
-				<ListItem title="Cerium"/>
-				<ListItem title="Praseodymium"/>
-				<ListItem title="Neodymium"/>
-				<ListItem title="Promethium"/>
-				<ListItem title="Samarium"/>
-				<ListItem title="Europium"/>
-				<ListItem title="Gadolinium"/>
-				<ListItem title="Terbium"/>
-				<ListItem title="Dysprosium"/>
-				<ListItem title="Holmium"/>
-				<ListItem title="Erbium"/>
-				<ListItem title="Thulium"/>
-				<ListItem title="Ytterbium"/>
-				<ListItem title="Lutetium"/>
-				<ListItem title="Hafnium"/>
-				<ListItem title="Tantalum"/>
-				<ListItem title="Tungsten"/>
-				<ListItem title="Rhenium"/>
-				<ListItem title="Osmium"/>
-				<ListItem title="Iridium"/>
-				<ListItem title="Platinum"/>
-				<ListItem title="Gold"/>
-				<ListItem title="Mercury"/>
-				<ListItem title="Thallium"/>
-				<ListItem title="Lead"/>
-				<ListItem title="Bismuth"/>
-				<ListItem title="Polonium"/>
-				<ListItem title="Astatine"/>
-				<ListItem title="Radon"/>
-				<ListItem title="Francium"/>
-				<ListItem title="Radium"/>
-				<ListItem title="Actinium"/>
-				<ListItem title="Thorium"/>
-				<ListItem title="Protactinium"/>
-				<ListItem title="Uranium"/>
-				<ListItem title="Neptunium"/>
-				<ListItem title="Plutonium"/>
-				<ListItem title="Americium"/>
-				<ListItem title="Curium"/>
-				<ListItem title="Berkelium"/>
-				<ListItem title="Californium"/>
-				<ListItem title="Einsteinium"/>
-				<ListItem title="Fermium"/>
-				<ListItem title="Mendelevium"/>
-				<ListItem title="Nobelium"/>
-				<ListItem title="Lawrencium"/>
-				<ListItem title="Rutherfordium"/>
-				<ListItem title="Dubnium"/>
-				<ListItem title="Seaborgium"/>
-				<ListItem title="Bohrium"/>
-				<ListItem title="Hassium"/>
-				<ListItem title="Meitnerium"/>
-				<ListItem title="Darmstadtium"/>
-				<ListItem title="Roentgenium"/>
-				<ListItem title="Copernicium"/>
-				<ListItem title="Ununtrium"/>
-				<ListItem title="Flerovium"/>
-				<ListItem title="Ununpentium"/>
-				<ListItem title="Livermorium"/>
-				<ListItem title="Ununseptium"/>
-				<ListItem title="Ununoctium"/>
+				<ListItem symbol:text="H" symbol:color="#090" name:text="Hydrogen" number:text="1" mass:text="1.00794"/>
+				<ListItem symbol:text="He" symbol:color="#090" name:text="Helium" number:text="2" mass:text="4.002602"/>
+				<ListItem symbol:text="Li" name:text="Lithium" number:text="3" mass:text="6.941"/>
+				<ListItem symbol:text="Be" name:text="Beryllium" number:text="4" mass:text="9.012182"/>
+				<ListItem symbol:text="B" name:text="Boron" number:text="5" mass:text="10.811"/>
+				<ListItem symbol:text="C" name:text="Carbon" number:text="6" mass:text="12.0107"/>
+				<ListItem symbol:text="N" symbol:color="#090" name:text="Nitrogen" number:text="7" mass:text="14.0067"/>
+				<ListItem symbol:text="O" symbol:color="#090" name:text="Oxygen" number:text="8" mass:text="15.9994"/>
+				<ListItem symbol:text="F" symbol:color="#090" name:text="Fluorine" number:text="9" mass:text="18.998404"/>
+				<ListItem symbol:text="Ne" symbol:color="#090" name:text="Neon" number:text="10" mass:text="20.1797"/>
+				<ListItem symbol:text="Na" name:text="Sodium" number:text="11" mass:text="22.989769"/>
+				<ListItem symbol:text="Mg" name:text="Magnesium" number:text="12" mass:text="24.305"/>
+				<ListItem symbol:text="Al" name:text="Aluminium" number:text="13" mass:text="26.981539"/>
+				<ListItem symbol:text="Si" name:text="Silicon" number:text="14" mass:text="28.0855"/>
+				<ListItem symbol:text="P" name:text="Phosphorus" number:text="15" mass:text="30.973763"/>
+				<ListItem symbol:text="S" name:text="Sulfur" number:text="16" mass:text="32.065"/>
+				<ListItem symbol:text="Cl" symbol:color="#090" name:text="Chlorine" number:text="17" mass:text="35.453"/>
+				<ListItem symbol:text="Ar" symbol:color="#090" name:text="Argon" number:text="18" mass:text="39.948"/>
+				<ListItem symbol:text="K" name:text="Potassium" number:text="19" mass:text="39.0983"/>
+				<ListItem symbol:text="Ca" name:text="Calcium" number:text="20" mass:text="40.078"/>
+				<ListItem symbol:text="Sc" name:text="Scandium" number:text="21" mass:text="44.955914"/>
+				<ListItem symbol:text="Ti" name:text="Titanium" number:text="22" mass:text="47.867"/>
+				<ListItem symbol:text="V" name:text="Vanadium" number:text="23" mass:text="50.9415"/>
+				<ListItem symbol:text="Cr" name:text="Chromium" number:text="24" mass:text="51.9961"/>
+				<ListItem symbol:text="Mn" name:text="Manganese" number:text="25" mass:text="54.938046"/>
+				<ListItem symbol:text="Fe" name:text="Iron" number:text="26" mass:text="55.845"/>
+				<ListItem symbol:text="Co" name:text="Cobalt" number:text="27" mass:text="58.933193"/>
+				<ListItem symbol:text="Ni" name:text="Nickel" number:text="28" mass:text="58.6934"/>
+				<ListItem symbol:text="Cu" name:text="Copper" number:text="29" mass:text="63.546"/>
+				<ListItem symbol:text="Zn" name:text="Zinc" number:text="30" mass:text="65.38"/>
+				<ListItem symbol:text="Ga" name:text="Gallium" number:text="31" mass:text="69.723"/>
+				<ListItem symbol:text="Ge" name:text="Germanium" number:text="32" mass:text="72.63"/>
+				<ListItem symbol:text="As" name:text="Arsenic" number:text="33" mass:text="74.9216"/>
+				<ListItem symbol:text="Se" name:text="Selenium" number:text="34" mass:text="78.96"/>
+				<ListItem symbol:text="Br" symbol:color="#009" name:text="Bromine" number:text="35" mass:text="79.904"/>
+				<ListItem symbol:text="Kr" symbol:color="#090" name:text="Krypton" number:text="36" mass:text="83.798"/>
+				<ListItem symbol:text="Rb" name:text="Rubidium" number:text="37" mass:text="85.4678"/>
+				<ListItem symbol:text="Sr" name:text="Strontium" number:text="38" mass:text="87.62"/>
+				<ListItem symbol:text="Y" name:text="Yttrium" number:text="39" mass:text="88.90585"/>
+				<ListItem symbol:text="Zr" name:text="Zirconium" number:text="40" mass:text="91.224"/>
+				<ListItem symbol:text="Nb" name:text="Niobium" number:text="41" mass:text="92.90638"/>
+				<ListItem symbol:text="Mo" name:text="Molybdenum" number:text="42" mass:text="95.96"/>
+				<ListItem symbol:text="Tc" symbol:color="#900" name:text="Technetium" number:text="43" mass:text="98"/>
+				<ListItem symbol:text="Ru" name:text="Ruthenium" number:text="44" mass:text="101.07"/>
+				<ListItem symbol:text="Rh" name:text="Rhodium" number:text="45" mass:text="102.9055"/>
+				<ListItem symbol:text="Pd" name:text="Palladium" number:text="46" mass:text="106.42"/>
+				<ListItem symbol:text="Ag" name:text="Silver" number:text="47" mass:text="107.8682"/>
+				<ListItem symbol:text="Cd" name:text="Cadmium" number:text="48" mass:text="112.411"/>
+				<ListItem symbol:text="In" name:text="Indium" number:text="49" mass:text="114.818"/>
+				<ListItem symbol:text="Sn" name:text="Tin" number:text="50" mass:text="118.71"/>
+				<ListItem symbol:text="Sb" name:text="Antimony" number:text="51" mass:text="121.76"/>
+				<ListItem symbol:text="Te" name:text="Tellurium" number:text="52" mass:text="127.6"/>
+				<ListItem symbol:text="I" name:text="Iodine" number:text="53" mass:text="126.90447"/>
+				<ListItem symbol:text="Xe" symbol:color="#090" name:text="Xenon" number:text="54" mass:text="131.293"/>
+				<ListItem symbol:text="Cs" name:text="Caesium" number:text="55" mass:text="132.90546"/>
+				<ListItem symbol:text="Ba" name:text="Barium" number:text="56" mass:text="137.327"/>
+				<ListItem symbol:text="La" name:text="Lanthanum" number:text="57" mass:text="138.90547"/>
+				<ListItem symbol:text="Ce" name:text="Cerium" number:text="58" mass:text="140.116"/>
+				<ListItem symbol:text="Pr" name:text="Praseodymium" number:text="59" mass:text="140.90765"/>
+				<ListItem symbol:text="Nd" name:text="Neodymium" number:text="60" mass:text="144.242"/>
+				<ListItem symbol:text="Pm" symbol:color="#900" name:text="Promethium" number:text="61" mass:text="145"/>
+				<ListItem symbol:text="Sm" name:text="Samarium" number:text="62" mass:text="150.36"/>
+				<ListItem symbol:text="Eu" name:text="Europium" number:text="63" mass:text="151.964"/>
+				<ListItem symbol:text="Gd" name:text="Gadolinium" number:text="64" mass:text="157.25"/>
+				<ListItem symbol:text="Tb" name:text="Terbium" number:text="65" mass:text="158.92535"/>
+				<ListItem symbol:text="Dy" name:text="Dysprosium" number:text="66" mass:text="162.5"/>
+				<ListItem symbol:text="Ho" name:text="Holmium" number:text="67" mass:text="164.93031"/>
+				<ListItem symbol:text="Er" name:text="Erbium" number:text="68" mass:text="167.259"/>
+				<ListItem symbol:text="Tm" name:text="Thulium" number:text="69" mass:text="168.9342"/>
+				<ListItem symbol:text="Yb" name:text="Ytterbium" number:text="70" mass:text="173.054"/>
+				<ListItem symbol:text="Lu" name:text="Lutetium" number:text="71" mass:text="174.9668"/>
+				<ListItem symbol:text="Hf" name:text="Hafnium" number:text="72" mass:text="178.49"/>
+				<ListItem symbol:text="Ta" name:text="Tantalum" number:text="73" mass:text="180.94788"/>
+				<ListItem symbol:text="W" name:text="Tungsten" number:text="74" mass:text="183.84"/>
+				<ListItem symbol:text="Re" name:text="Rhenium" number:text="75" mass:text="186.207"/>
+				<ListItem symbol:text="Os" name:text="Osmium" number:text="76" mass:text="190.23"/>
+				<ListItem symbol:text="Ir" name:text="Iridium" number:text="77" mass:text="192.217"/>
+				<ListItem symbol:text="Pt" name:text="Platinum" number:text="78" mass:text="195.084"/>
+				<ListItem symbol:text="Au" name:text="Gold" number:text="79" mass:text="196.96657"/>
+				<ListItem symbol:text="Hg" symbol:color="#009" name:text="Mercury" number:text="80" mass:text="200.59"/>
+				<ListItem symbol:text="Tl" name:text="Thallium" number:text="81" mass:text="204.3833"/>
+				<ListItem symbol:text="Pb" name:text="Lead" number:text="82" mass:text="207.2"/>
+				<ListItem symbol:text="Bi" symbol:color="#900" name:text="Bismuth" number:text="83" mass:text="208.9804"/>
+				<ListItem symbol:text="Po" symbol:color="#900" name:text="Polonium" number:text="84" mass:text="209"/>
+				<ListItem symbol:text="At" symbol:color="#900" name:text="Astatine" number:text="85" mass:text="210"/>
+				<ListItem symbol:text="Rn" symbol:color="#900" name:text="Radon" number:text="86" mass:text="222"/>
+				<ListItem symbol:text="Fr" symbol:color="#900" name:text="Francium" number:text="87" mass:text="223"/>
+				<ListItem symbol:text="Ra" symbol:color="#900" name:text="Radium" number:text="88" mass:text="226"/>
+				<ListItem symbol:text="Ac" symbol:color="#900" name:text="Actinium" number:text="89" mass:text="227"/>
+				<ListItem symbol:text="Th" symbol:color="#900" name:text="Thorium" number:text="90" mass:text="232.03806"/>
+				<ListItem symbol:text="Pa" symbol:color="#900" name:text="Protactinium" number:text="91" mass:text="231.03587"/>
+				<ListItem symbol:text="U" symbol:color="#900" name:text="Uranium" number:text="92" mass:text="238.02892"/>
+				<ListItem symbol:text="Np" symbol:color="#900" name:text="Neptunium" number:text="93" mass:text="237"/>
+				<ListItem symbol:text="Pu" symbol:color="#900" name:text="Plutonium" number:text="94" mass:text="244"/>
+				<ListItem symbol:text="Am" symbol:color="#900" name:text="Americium" number:text="95" mass:text="243"/>
+				<ListItem symbol:text="Cm" symbol:color="#900" name:text="Curium" number:text="96" mass:text="247"/>
+				<ListItem symbol:text="Bk" symbol:color="#900" name:text="Berkelium" number:text="97" mass:text="247"/>
+				<ListItem symbol:text="Cf" symbol:color="#900" name:text="Californium" number:text="98" mass:text="251"/>
+				<ListItem symbol:text="Es" symbol:color="#900" name:text="Einsteinium" number:text="99" mass:text="252"/>
+				<ListItem symbol:text="Fm" symbol:color="#900" name:text="Fermium" number:text="100" mass:text="257"/>
+				<ListItem symbol:text="Md" symbol:color="#900" name:text="Mendelevium" number:text="101" mass:text="258"/>
+				<ListItem symbol:text="No" symbol:color="#900" name:text="Nobelium" number:text="102" mass:text="259"/>
+				<ListItem symbol:text="Lr" symbol:color="#900" name:text="Lawrencium" number:text="103" mass:text="262"/>
+				<ListItem symbol:text="Rf" symbol:color="#900" name:text="Rutherfordium" number:text="104" mass:text="267"/>
+				<ListItem symbol:text="Db" symbol:color="#900" name:text="Dubnium" number:text="105" mass:text="268"/>
+				<ListItem symbol:text="Sg" symbol:color="#900" name:text="Seaborgium" number:text="106" mass:text="271"/>
+				<ListItem symbol:text="Bh" symbol:color="#900" name:text="Bohrium" number:text="107" mass:text="272"/>
+				<ListItem symbol:text="Hs" symbol:color="#900" name:text="Hassium" number:text="108" mass:text="270"/>
+				<ListItem symbol:text="Mt" symbol:color="#900" name:text="Meitnerium" number:text="109" mass:text="276"/>
+				<ListItem symbol:text="Ds" symbol:color="#900" name:text="Darmstadtium" number:text="110" mass:text="281"/>
+				<ListItem symbol:text="Rg" symbol:color="#900" name:text="Roentgenium" number:text="111" mass:text="280"/>
+				<ListItem symbol:text="Cn" symbol:color="#900" name:text="Copernicium" number:text="112" mass:text="285"/>
+				<ListItem symbol:text="Uut" symbol:color="#900" name:text="Ununtrium" number:text="113" mass:text="284"/>
+				<ListItem symbol:text="Fl" symbol:color="#900" name:text="Flerovium" number:text="114" mass:text="289"/>
+				<ListItem symbol:text="Uup" symbol:color="#900" name:text="Ununpentium" number:text="115" mass:text="288"/>
+				<ListItem symbol:text="Lv" symbol:color="#900" name:text="Livermorium" number:text="116" mass:text="293"/>
+				<ListItem symbol:text="Uus" symbol:color="#900" name:text="Ununseptium" number:text="117" mass:text="294"/>
+				<ListItem symbol:text="Uuo" symbol:color="#900" name:text="Ununoctium" number:text="118" mass:text="294"/>
 			</ListSection>
 		</ListView>
 	</Window>

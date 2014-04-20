@@ -9,7 +9,8 @@
 "#elementsList": {
 	backgroundColor:"white",
 	defaultItemTemplate:"elementTemplate",
-	separatorColor: "#999"
+	separatorColor: "#999",
+	bottom: 50
 },
 "#elementsList[platform=ios]": {
 	top: 20
@@ -55,5 +56,33 @@
 },
 "#mass": {
 	color: "blue"
+},
+
+"#sliderContainer": {
+	bottom: 0,
+	height: 50,
+	backgroundColor: "black"
+},
+"#slider": {
+	left: 0,
+	right: 0,
+},
+
+"#hud": {
+	left: 45, right: 45, height: 80, bottom: 50,
+	opacity: 0, visible: false,
+	backgroundColor: "white"
+}
+"#temperatureView": {
+	left: 15, top: 15, bottom: 15, width: Ti.UI.FILL,
+	layout: "horizontal"
+},
+"#temperature": {
+	color: "black",
+	width: 200,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+}
+"#resetButton": {
+	right: 15, top: 15, bottom: 15, width: Ti.UI.SIZE, title: "Reset"
 }
 

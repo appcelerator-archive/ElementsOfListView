@@ -1,6 +1,6 @@
 <Alloy>
 	<Window class="container">
-		<ListView id="elementsList">
+		<ListView id="elementsList" onMarker="markerReached">
             <Templates>
 
                 <ItemTemplate name="elementTemplate">

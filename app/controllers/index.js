@@ -3,6 +3,61 @@ var elements = require('elements');
 var temperature = 25;
 
 /**
+ * 	Loads the contents of an element file and returns it.
+ */
+var loadFile = function(filename) {
+	var elementsFile = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + filename); 
+	var result = elementsFile.read().text;
+	return result;
+};
+
+/**
+ *	Convert a list of elements from a JSON file into a format that can be added to the ListView
+ * 	@param {Object} rawElements the elements from the JSON file.
+ */
+var preprocessForListView = function(rawElements) {
+	return _.map(rawElements, function(element) {
+			return {
+				symbol: {text: element.symbol, color: temperatureColor(element, temperature)},
+				name: {text: element.name},
+				number: {text: element.number.toString()},
+				mass: {text: element.mass.toString()}
+			};
+	});	
+};
+
+/**
+ *	Adds more elements to the elementsList if possible
+ */
+var addData = function() {
+	if(elements.files.length > 0) {
+		var newElements = JSON.parse(loadFile(elements.files.shift())).table;
+		elements.table = elements.table.concat(newElements);
+		var dataToAdd = preprocessForListView(newElements);
+		
+		// Disable animation when adding to iPhone if on the first screen, so it doesn't have the appearance of loading
+		// Android doesn't animate appends
+		var animationStyle = OS_IOS ? (elements.table.length < 25 ? Ti.UI.iPhone.RowAnimationStyle.NONE : null) : null;
+		$.elementsList.sections[0].appendItems(dataToAdd, animationStyle);
+	}
+};
+// let the class start before adding items.
+setTimeout(function() {
+	// the initial data load
+	addData();
+	$.elementsList.setMarker({sectionIndex:0,itemIndex:15});
+},0);
+
+var markerReached = function() {
+	addData();
+	$.elementsList.setMarker({
+		sectionIndex:0,
+		itemIndex: ($.elementsList.sections[0].items.length - 10)
+	});
+};
+
+
+/**
  * Calculate the colour of the symbol in the list.
  */
 var temperatureColor = function(element, temperature) {
@@ -18,96 +73,19 @@ var temperatureColor = function(element, temperature) {
 };
 
 /**
- * 	Not used any more.
- *	
- * 	Updates an element's symbol color according to the current temperature. This method gets an item from the ListView, 
- *  changes its symbol color, then sends the update back into the list.
- *	
- * 	Updating 118 items this way was unacceptably slow, 10-15 seconds on my fastest Android device.
- */
-var changeColor = function(itemIndex, color) {
-	var listSection = $.elementsList.sections[0];
-	var listItem = listSection.getItemAt(itemIndex);
-	listItem.symbol.color = color;
-	listSection.updateItemAt(itemIndex, listItem);
-};
-
-/**
- * 	Not used any more.
- *	
- * 	This is an update on the method above. It only updates a ListItem if the color changes. Getting the item from the
- * 	listView is not a particularly expensive operation, when no colours are actually changed it usually took about 35ms
- *	to get iterate through all 118 elements this way. However if a lot of elements changed it's still unacceptably slow.
- *	
- * 	Updating 118 items this way was unacceptably slow, 10-15 seconds on my fastest Android device.
- */
-var changeColor = function(itemIndex, color) {
-	var listSection = $.elementsList.sections[0];
-	var listItem = listSection.getItemAt(itemIndex);
-	if(listItem.symbol.color != color) {
-		listItem.symbol.color = color;
-		listSection.updateItemAt(itemIndex, listItem);
-		return true; // this just means the item is actually updated. The calling function uses this to measure the 
-					 // performance of the element changes.
-	}
-	return false; // means the item was not updated.
-};
-
-/**
- *	This is the initial load of the content in the list.
- * 
- * 	After trying the piecemeal updates of the list in the two methods above, I tried just rebuilding the dataset and 
- *  updating it to the list. This is the fastest method by far, and the lag time is just as small no matter how many
- *	colours change.
+ *	Load or reload the content in the list.
  */
 var setItems = function() {	
-	var items = _.map(elements.table, function(element) {
-			return {
-				symbol: {text: element.symbol, color: temperatureColor(element, temperature)},
-				name: {text: element.name},
-				number: {text: element.number.toString()},
-				mass: {text: element.mass.toString()}
-			};
-		});
+	var items = preprocessForListView(elements.table);
 	// note that setItems will clear the list before passing in the item array.
 	$.elementsList.sections[0].setItems(items);
 };
-// the initial data load
-setItems();
 
 var changeTemperatureAction = function() {
 
-	// start time and end time for logging purposes only
-	var startTime = new Date();
-
 	changeTemperatureTimer = null;
-
-	var numChanges = 118; // for measuring performance only purposes only.
-
-	if(false) {
-		// first method, updating all items in the list
-		_.map(elements.table, function(element) {
-			changeColor(element.number-1, temperatureColor(element, temperature));
-		});
-	}	
-
-	if(false) {
-		// the second method, updating only the items that 
-		numChanges = 0;
-		_.map(elements.table, function(element) {
-			if(changeColor(element.number-1, temperatureColor(element, temperature))) {
-				numChanges++;
-			}
-		});
-	}
-
-	// the third method, just replace all the items in the list.	
 	setItems();
 
-	// logging only
-	var endTime = new Date();
-	Ti.API.info("index::changeTemperatureAction complete, changed "+numChanges+" element states in " + 
-			(endTime.valueOf() - startTime.valueOf()) + "ms.");
 };
 
 /**

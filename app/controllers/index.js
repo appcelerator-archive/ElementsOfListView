@@ -25,7 +25,7 @@ var temperatureColor = function(element, temperature) {
  *	
  * 	Updating 118 items this way was unacceptably slow, 10-15 seconds on my fastest Android device.
  */
-var changeColor = function(itemIndex, color) {
+var changeColor1 = function(itemIndex, color) {
 	var listSection = $.elementsList.sections[0];
 	var listItem = listSection.getItemAt(itemIndex);
 	listItem.symbol.color = color;
@@ -41,7 +41,7 @@ var changeColor = function(itemIndex, color) {
  *	
  * 	Updating 118 items this way was unacceptably slow, 10-15 seconds on my fastest Android device.
  */
-var changeColor = function(itemIndex, color) {
+var changeColor2 = function(itemIndex, color) {
 	var listSection = $.elementsList.sections[0];
 	var listItem = listSection.getItemAt(itemIndex);
 	if(listItem.symbol.color != color) {
@@ -87,22 +87,24 @@ var changeTemperatureAction = function() {
 	if(false) {
 		// first method, updating all items in the list
 		_.map(elements.table, function(element) {
-			changeColor(element.number-1, temperatureColor(element, temperature));
+			changeColor1(element.number-1, temperatureColor(element, temperature));
 		});
 	}	
 
-	if(false) {
+	if(true) {
 		// the second method, updating only the items that 
 		numChanges = 0;
 		_.map(elements.table, function(element) {
-			if(changeColor(element.number-1, temperatureColor(element, temperature))) {
+			if(changeColor2(element.number-1, temperatureColor(element, temperature))) {
 				numChanges++;
 			}
 		});
 	}
 
 	// the third method, just replace all the items in the list.	
-	setItems();
+	if(false) {
+		setItems();
+	}
 
 	// logging only
 	var endTime = new Date();

@@ -1,6 +1,0 @@
-<Alloy>
-	<View class="container">
-		<TextField id="searchText" />
-		<Button id="cancelButton" />
-	</View>
-</Alloy>

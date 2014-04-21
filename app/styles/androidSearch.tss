@@ -1,0 +1,17 @@
+
+".container": {
+	backgroundColor: "black",
+	top: 0,
+	left: 0,
+	right: 0,
+	height: 50,
+	layout: "horizontal"  
+},
+
+"#cancelButton": {
+	width: Ti.UI.SIZE
+},
+
+"#searchText": {
+	width: Ti.UI.FILL
+}

@@ -1,5 +1,6 @@
 <Alloy>
 	<Window class="container">
+		<SearchBar id="searchBar" platform="android" onChange="searchAction" onCancel="cancelSearchAction" />
 		<ListView id="elementsList" onMarker="markerReached">
             <Templates>
 
@@ -17,6 +18,8 @@
                 </ItemTemplate>
 
             </Templates>
+
+			<SearchBar id="searchBar" platform="ios" />
 
 			<ListSection name="elements" />
 

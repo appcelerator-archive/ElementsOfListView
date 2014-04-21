@@ -1,6 +1,7 @@
 ".container[platform=android]": {
 	backgroundColor:"white",
-	navBarHidden:true
+	navBarHidden:true,
+	exitOnClose:true
 }
 ".container[platform=ios]": {
 	backgroundColor:"black",
@@ -71,21 +72,31 @@
 "#hud": {
 	left: 45, right: 45, height: 80, bottom: 50,
 	opacity: 0, visible: false,
-	backgroundColor: "white"
+	backgroundColor: "rgba(0,0,0,0.7)"
 }
 "#temperatureView": {
 	left: 15, top: 15, bottom: 15, width: Ti.UI.FILL,
 	layout: "horizontal"
 },
 "#temperatureLabel": {
-	color: "black"
+	color: "white"
 },
 "#temperature": {
-	color: "black",
+	color: "white",
 	width: 200,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 }
 "#resetButton": {
 	right: 15, top: 15, bottom: 15, width: Ti.UI.SIZE, title: "Reset"
+},
+"#searchBar": {
+	caseInsensitiveSearch: true
+},
+"#searchBar[platform=android]": {
+	visible: false,
+	top: 0,
+	height: 50,
+	backgroundColor: 'black',
+	softKeyboardOnFocus: Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
+	showCancel: true
 }
-

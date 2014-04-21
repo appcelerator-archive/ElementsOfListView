@@ -3,6 +3,72 @@ var elements = require('elements');
 var temperature = 25;
 
 /**
+ *	Because search can only search for things that are already in the ListView, let's load the rest of the content here.
+ */
+var searchFocus = function(e) {
+	while(elements.files.length > 0) {
+		addData();
+	}
+};
+
+
+/*
+ * 	This is the search bar on Android. It's not visible until the user clicks into it, and when the user deletes all
+ * 	the text inside, it disappears.
+ */
+if(OS_ANDROID) {
+
+	var clickToSearch = {
+		// this 'template' property allows this list item to use a different template from the others.
+		template: Titanium.UI.LIST_ITEM_TEMPLATE_DEFAULT,
+		properties: {
+			height: 50,	// fixes the height of the listItem. I want it to be the same height as the Search bar so it
+						// the list doesn't appear to shift when this item is removed.
+			title: "Click to search",
+			color: "#009",
+			itemId: "clickToSearch"
+		}
+	};
+	
+	var searchAction = function(e) {
+		$.elementsList.searchText = e.value;
+	};
+	
+	var cancelSearchAction = function(e) {
+		if('' === $.searchBar.value) {
+			// end search
+			$.searchBar.blur();
+			$.elementsList.top = 0;
+			$.elementsList.sections[0].insertItemsAt(0, [clickToSearch]);
+			$.searchBar.visible = false;
+		}
+	};
+
+	$.elementsList.addEventListener('itemclick', function(e) {
+		//
+		//	Ensure this handler is only acting on clickToSearch items.
+		//
+		if(!$.searchBar.visible && "clickToSearch" == e.itemId) {
+			// start search
+			setTimeout(searchFocus, 10); // make sure all the data is loaded or the search won't find stuff.
+										 // the data doesn't really need to exist until the user actually starts
+										 // typing, so we can defer this action until the UI changes are made.
+			$.searchBar.visible = true;
+			$.elementsList.sections[0].deleteItemsAt(0,1); // remove the list item that says 'clickToSearch'
+			$.elementsList.top = 50;	// make room for the 
+			$.searchBar.focus();
+		}
+	});
+	
+	var sec = $.elementsList.sections[0];
+	if(0 == sec.items.length) {
+		sec.setItems([clickToSearch]);
+	} else {
+		sec.insertItemsAt(0, [clickToSearch]);
+	}
+}
+
+/**
  * 	Loads the contents of an element file and returns it.
  */
 var loadFile = function(filename) {
@@ -18,6 +84,9 @@ var loadFile = function(filename) {
 var preprocessForListView = function(rawElements) {
 	return _.map(rawElements, function(element) {
 			return {
+				properties: {
+					searchableText: element.name + ' ' + element.symbol + ' ' + element.number.toString()
+				},
 				symbol: {text: element.symbol, color: temperatureColor(element, temperature)},
 				name: {text: element.name},
 				number: {text: element.number.toString()},
@@ -77,6 +146,9 @@ var temperatureColor = function(element, temperature) {
  */
 var setItems = function() {	
 	var items = preprocessForListView(elements.table);
+	if(OS_ANDROID && !$.searchBar.visible) {
+		items.unshift(clickToSearch);
+	}
 	// note that setItems will clear the list before passing in the item array.
 	$.elementsList.sections[0].setItems(items);
 };

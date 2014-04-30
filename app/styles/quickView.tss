@@ -1,0 +1,143 @@
+
+".container": {},
+
+"#overlay":{
+	top: 0, left: 0, right: 0, bottom: 50, backgroundColor: "rgba(0,0,0,0.6)"
+},
+"#overlay[platform=ios]":{
+	backgroundColor: "rgba(0,0,0,0.6)"
+},
+"#overlay[platform=android]":{
+	backgroundImage: "/hud/000000-0.6.png"
+},
+
+".dataView":{
+	height: Ti.UI.SIZE, layout: "horizontal"
+},
+".legendLabel":{
+//	backgroundColor: "cyan",
+	color: "#999", font: {fontSize:10}, bottom: 0, height: Ti.UI.SIZE
+},
+".dataLabel":{
+//	backgroundColor: "fuchsia",
+	color: "black", font: {fontSize:10}, bottom: 0, height: Ti.UI.SIZE
+},
+
+"#elementBox":{
+	layout: "vertical",
+	backgroundColor: "white",
+	width: 260, height: 300,
+	borderColor: "black", borderWidth: 2
+},
+
+"#topRow": {
+	top: 15, left: 15, right: 15, height: 112
+},
+"#symbol": {
+	font: {fontSize: 88, fontWeight: 'bold'},
+	color: 'black', height: Ti.UI.FILL, bottom: 0, left: 0
+},
+"#massDataView":{
+	bottom: 40, right: 0, width:Ti.UI.SIZE
+},
+"#radiusDataView":{
+	bottom: 25, right: 0, width:Ti.UI.SIZE
+},
+"#massDataLabel": {
+	width: Ti.UI.SIZE
+}
+"#radiusDataLabel": {
+	width: Ti.UI.SIZE
+}
+
+"#primaryDataView":{
+	height: Ti.UI.FILL,
+	right: 0, bottom: 0
+},
+"#number":{
+	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
+	color: "#900",
+	font: {fontSize: 44},
+	right: 0, top: 0,
+	width: 200
+},
+
+"#name": {
+	color: 'black', font: {fontSize: 32}, height: 50, top: 0
+},
+
+"#states": {
+	layout:"vertical",
+	left: 0, right: 0, height: Ti.UI.SIZE
+},
+
+"#temperatureScaleMarkers":{
+	height: 7,
+	left: 15, right: 15,
+	backgroundColor: 'white'
+},
+".scaleMarker": {backgroundColor:'black', height: 5, width: "2px", bottom: 0 }
+"#scalen200":{backgroundColor: '#F00', width: "1px", height: 3 },
+"#scalen100":{backgroundColor: '#F00', width: "1px", height: 3 },
+"#scale0":{ backgroundColor: '#00F', width: "3px", height: 7 },
+"#scale100":{backgroundColor: '#F00', width: "1px", height: 3 },
+"#scale200":{backgroundColor: '#F00', width: "1px", height: 3 },
+"#scale300":{backgroundColor: '#F00', width: "1px", height: 3 },
+"#scale400":{backgroundColor: '#F00', width: "1px", height: 3 }
+"#scale600":{backgroundColor: '#F00', width: "1px", height: 3 },
+"#scale700":{backgroundColor: '#F00', width: "1px", height: 3 },
+"#scale800":{backgroundColor: '#F00', width: "1px", height: 3 },
+"#scale900":{backgroundColor: '#F00', width: "1px", height: 3 }
+
+"#temperatureScale": {
+	height: 10,
+	left: 15, right: 15,
+	backgroundColor: "#999"
+},
+"#solidBar":{
+	left: 0, height: Ti.UI.FILL,
+	backgroundColor:"black"
+},
+"#liquidBar":{
+	right: 0, left: 0, height: Ti.UI.FILL,
+	backgroundColor:"#009"
+},
+"#gasBar":{
+	right: 0, height: Ti.UI.FILL,
+	backgroundColor:"#090"
+},
+"#meltMarker":{
+	width: "1px", backgroundColor:"white", height: Ti.UI.FILL
+},
+"#boilMarker":{
+	width: "1px", backgroundColor:"white", height: Ti.UI.FILL
+},
+"#meltingLabelContainer":{
+	height: Ti.UI.FILL
+},
+"#boilingLabelContainer":{
+	height: Ti.UI.FILL
+},
+
+
+"#boilingAndMelting": {
+	height: 30,
+	left: 15, right: 15
+},
+"#boilingBox": {
+	width: "60%", top: 0, bottom: 0
+},
+"#meltingBox": {
+	width: "60%", top: 0, bottom: 0
+},
+".markerLine": {
+	backgroundColor: "black",
+	top: 0, bottom: 0, width: "1px"
+},
+
+"#scaleDisclaimer": {
+	height: 15,
+	top: 5,
+	font: {fontSize: 10},
+	color: "#999"
+}

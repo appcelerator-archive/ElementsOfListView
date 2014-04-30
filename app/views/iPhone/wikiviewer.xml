@@ -1,0 +1,14 @@
+<Alloy>
+	<NavigationWindow id="navWin">
+		<Window class="container" id="win">
+			<View id="webViewArea">
+				<WebView id="wikiview" />
+				<WebView id="spinnerview" />
+			</View>
+			<View id="footerArea">
+				<View id="footerTopBorder" />
+				<Button id="launchInSafari" />
+			</View>
+		</Window>
+	</NavigationWindow>
+</Alloy>

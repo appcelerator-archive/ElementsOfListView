@@ -22,6 +22,8 @@
 
 "#symbol": {
 	left: 15,
+	width: 65,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 	color: "black",
 	font: { fontSize: 34, fontWeight: 'bold' }
 },
@@ -71,9 +73,15 @@
 
 "#hud": {
 	left: 45, right: 45, height: 80, bottom: 50,
-	opacity: 0, visible: false,
+	opacity: 0, visible: false
+}
+"#hud[platform=ios]": {
 	backgroundColor: "rgba(0,0,0,0.7)"
 }
+"#hud[platform=android]": {
+	backgroundImage: "/hud/000000-0.7.png"
+},
+
 "#temperatureView": {
 	left: 15, top: 15, bottom: 15, width: Ti.UI.FILL,
 	layout: "horizontal"

@@ -1,0 +1,68 @@
+<Alloy>
+	<View class="container">
+		<View id="overlay" />
+		<View id="elementBox">
+			<View id="topRow">
+				<Label id="symbol"/>
+				<View id="primaryDataView">
+					<Label id="number" />
+					<View class="dataView" id="massDataView">
+						<Label class="legendLabel" id="massLegendLabel" text="Mass: " />
+						<Label class="dataLabel" id="massDataLabel" />
+					</View>
+					<View class="dataView" id="radiusDataView">
+						<Label class="legendLabel" id="radiusLegendLabel" text="Radius: " />
+						<Label class="dataLabel" id="radiusDataLabel" />						
+					</View>
+				</View>
+			</View>
+			<Label id="name"/>
+			<View id="states">
+				<View id="temperatureScaleMarkers">
+					<View class="scaleMarker" id="scalen200" />
+					<View class="scaleMarker" id="scalen100" />
+					<View class="scaleMarker" id="scale0" />
+					<View class="scaleMarker" id="scale100" />
+					<View class="scaleMarker" id="scale200" />
+					<View class="scaleMarker" id="scale300" />
+					<View class="scaleMarker" id="scale400" />
+					<View class="scaleMarker" id="scale500" />
+					<View class="scaleMarker" id="scale600" />
+					<View class="scaleMarker" id="scale700" />
+					<View class="scaleMarker" id="scale800" />
+					<View class="scaleMarker" id="scale900" />
+					<View class="scaleMarker" id="scale1000" />
+					<View class="scaleMarker" id="scale1500" />
+					<View class="scaleMarker" id="scale2000" />
+					<View class="scaleMarker" id="scale2500" />
+					<View class="scaleMarker" id="scale3000" />
+					<View class="scaleMarker" id="scale3500" />
+				</View>
+				<View id="temperatureScale">
+					<View id="liquidBar"/>
+					<View id="solidBar"/>
+					<View id="gasBar"/>
+					<View class="scaleMarker" id="meltMarker" />
+					<View class="scaleMarker" id="boilMarker" />
+				</View>
+				<View id="boilingAndMelting">
+					<View id="boilingBox">
+						<View class="markerLine" id="boilingMarkerLine"/>
+						<View class="dataView" id="boilingLabelContainer">
+							<Label class="legendLabel" id="boilingLegendLabel" text="Boiling:" />
+							<Label class="dataLabel" id="boilingDataLabel" />
+						</View>
+					</View>
+					<View id="meltingBox">
+						<View class="markerLine" id="meltingMarkerLine"/>
+						<View class="dataView" id="meltingLabelContainer">
+							<Label class="legendLabel" id="meltingLegendLabel" text="Melting:" />
+							<Label class="dataLabel" id="meltingDataLabel" />
+						</View>
+					</View>
+				</View>
+				<Label id="scaleDisclaimer" text="Scale is not linear." />
+			</View>
+		</View>
+	</View>
+</Alloy>

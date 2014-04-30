@@ -4,8 +4,8 @@
 		<ListView id="elementsList" onMarker="markerReached">
             <Templates>
 
-                <ItemTemplate name="elementTemplate">
-                    <Label bindId="symbol" id="symbol" />
+                <ItemTemplate name="elementTemplate" >
+                    <Label bindId="symbol" id="symbol" onClick="symbolClick" />
                     <View id="atomProperties">
 	                    <Label bindId="name" id="name" />
 	                    <View id="secondLine">
@@ -19,13 +19,13 @@
 
             </Templates>
 
-			<SearchBar id="searchBar" platform="ios" />
+			<SearchBar id="searchBar" platform="ios" onFocus="searchFocus" />
 
 			<ListSection name="elements" />
 
 		</ListView>
 		<View id="sliderContainer">
-        	<Slider id="slider" min="0" max="10"
+        	<Slider id="slider" min="0" max="1"
         			onChange="changeTemperature" onTouchend="sliderTouchend" onTouchstart="sliderTouchstart" />
         </View>
 		<View id="hud">

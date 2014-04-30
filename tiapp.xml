@@ -9,7 +9,7 @@
     <copyright>2014 by thomas</copyright>
     <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>
-    <navbar-hidden>false</navbar-hidden>
+    <navbar-hidden>true</navbar-hidden>
     <analytics>true</analytics>
     <guid>6dd3b111-cebb-4693-b92f-be8fc95242c0</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
@@ -38,7 +38,11 @@
             </dict>
         </plist>
     </ios>
-    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <manifest>
+            <uses-permission android:name="android.permission.INTERNET"/>
+        </manifest>
+    </android>
     <mobileweb>
         <precache/>
         <splash>

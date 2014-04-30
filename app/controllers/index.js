@@ -1,12 +1,91 @@
 
 var elements = require('elements');
+var f = require('formulae');
 var temperature = 25;
+
+var getElementBySymbol = function(symbol) {
+	Ti.API.log("index::elementClick called, symbol = " + symbol);
+	if("clickToSearch" === symbol) {
+		return null; // this is not an element
+	}
+	for(var i = 0; i < elements.table.length; i++) {
+		var elem = elements.table[i];
+		if(elem.symbol == symbol) {
+			// found the item
+			return elem;
+		}
+	}
+	// If we get here, no element is found. Should never happen.
+	Ti.API.error("index::getElementBySymbol internal error");
+	return null; 
+};
+
+var quickView = function(elem) {
+	Ti.API.debug("index::quickView called");
+	var quickView = Alloy.createController("quickView", {
+		element: elem,
+		temperature: temperature
+	});
+	$.index.add(quickView.getView());
+	
+	quickView.getView().addEventListener('click', function() {
+		$.index.remove(quickView.getView());
+	});
+};
+
+/**
+ *	an element was clicked on, we know what it is. Now open it in a web view
+ */
+var viewElement = function(elem) {
+	if(OS_IOS) {
+		var wikiwindow = Alloy.createController("iPhone/wikiviewer", {
+			name: elem.name, 
+			symbol: elem.symbol,
+			symbolcolor: f.temperatureColor(elem, temperature),
+			wikilink: elem.wikilink
+		});
+		wikiwindow.getView().open();
+	}
+	if(OS_ANDROID) {
+		Titanium.Platform.openURL(elem.wikilink);
+	}
+};
+
+var symbolClicked = false;
+function symbolClick(e) {
+	Ti.API.debug("index::symbolClick - started, e.source == " + e.source);
+	var elem = getElementBySymbol(e.itemId);
+	Ti.API.debug("index::symbolClick - elem = " + JSON.stringify(elem));
+	if(elem) {
+		quickView(elem);
+	}
+	symbolClicked = true;
+};
+
+/**
+ *	Click into a web view that contains the wiki page for the element
+ */
+var elementClick = function(e) {
+	if(symbolClicked) {
+		symbolClicked = false;
+		return;
+	}
+	Ti.API.debug("index::elementClick - source.id = " + e.source.id);
+	var elem = getElementBySymbol(e.itemId);
+	if(elem) {
+		viewElement(elem);		
+	}
+};
+$.elementsList.addEventListener('itemclick', elementClick);
+
 
 /**
  *	Because search can only search for things that are already in the ListView, let's load the rest of the content here.
  */
 var searchFocus = function(e) {
+	Ti.API.debug("index::searchFocus called");
 	while(elements.files.length > 0) {
+		Ti.API.debug("index::searchFocus adding data");
 		addData();
 	}
 };
@@ -59,7 +138,7 @@ if(OS_ANDROID) {
 			$.searchBar.focus();
 		}
 	});
-	
+
 	var sec = $.elementsList.sections[0];
 	if(0 == sec.items.length) {
 		sec.setItems([clickToSearch]);
@@ -68,14 +147,6 @@ if(OS_ANDROID) {
 	}
 }
 
-/**
- * 	Loads the contents of an element file and returns it.
- */
-var loadFile = function(filename) {
-	var elementsFile = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + filename); 
-	var result = elementsFile.read().text;
-	return result;
-};
 
 /**
  *	Convert a list of elements from a JSON file into a format that can be added to the ListView
@@ -83,15 +154,16 @@ var loadFile = function(filename) {
  */
 var preprocessForListView = function(rawElements) {
 	return _.map(rawElements, function(element) {
-			return {
-				properties: {
-					searchableText: element.name + ' ' + element.symbol + ' ' + element.number.toString()
-				},
-				symbol: {text: element.symbol, color: temperatureColor(element, temperature)},
-				name: {text: element.name},
-				number: {text: element.number.toString()},
-				mass: {text: element.mass.toString()}
-			};
+		return {
+			properties: {
+				searchableText: element.name + ' ' + element.symbol + ' ' + element.number.toString(),
+				itemId: element.symbol
+			},
+			symbol: {text: element.symbol, color: f.temperatureColor(element, temperature), onClick: elementClick},
+			name: {text: element.name},
+			number: {text: element.number.toString()},
+			mass: {text: element.mass.toString()}
+		};
 	});	
 };
 
@@ -99,10 +171,12 @@ var preprocessForListView = function(rawElements) {
  *	Adds more elements to the elementsList if possible
  */
 var addData = function() {
-	if(elements.files.length > 0) {
-		var newElements = JSON.parse(loadFile(elements.files.shift())).table;
-		elements.table = elements.table.concat(newElements);
+	var newElements = elements.addData();
+	if(newElements) {
 		var dataToAdd = preprocessForListView(newElements);
+		
+		Ti.API.debug(JSON.stringify(dataToAdd));
+		
 		
 		// Disable animation when adding to iPhone if on the first screen, so it doesn't have the appearance of loading
 		// Android doesn't animate appends
@@ -125,21 +199,6 @@ var markerReached = function() {
 	});
 };
 
-
-/**
- * Calculate the colour of the symbol in the list.
- */
-var temperatureColor = function(element, temperature) {
-	if("unstable" === element.stability) {
-		return "#900"; // unstable
-	} else if(temperature+273 > element.boiling_point) {
-		return "#090"; // gas
-	} else if("n/a" === element.melting_point || temperature+273 > element.melting_point) {
-		return "#009"; // liquid
-	} else {
-		return "black"; // solid
-	}
-};
 
 /**
  *	Load or reload the content in the list.
@@ -173,16 +232,8 @@ var changeTemperatureTimer = null;
  */
 var changeTemperature = function(e) {
 	
-	// this forumula gives the slider extra room to move between -50 and 550 degrees
-	var x = e.value;
-	if(x < 2) {
-		temperature = 44.25*x*x + 23*x - 273;
-	} else if(x > 5) {
-		temperature = 98*x*x - 780*x + 2000;
-	} else {
-		temperature = 200*x - 450;
-	}
-	
+	temperature = f.temperatureFromScale(e.value);
+
 	updateHud();
 	if(!changeTemperatureTimer) {
 		changeTemperatureTimer = setTimeout(changeTemperatureAction, 100);
@@ -286,7 +337,7 @@ var removeHud = function(e) {
  * @param {Object} e ignored
  */
 var resetTemperature = function(e) {
-	var sliderValueAtSTP = 2.375;
+	var sliderValueAtSTP = 0.2375;
 	$.slider.value = sliderValueAtSTP;
 	setTimeout(function() {
 		changeTemperature({value:sliderValueAtSTP});

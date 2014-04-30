@@ -1,0 +1,23 @@
+"#navWin": {
+	modal: true
+},
+".container": {
+ 	layout:"vertical" ,
+ 	modal: true,
+ 	navBarHidden: false
+},
+"#spinnerview": {
+	visible: false
+},
+"#webViewArea": {
+	height:Ti.UI.FILL,
+	left: 0, right: 0
+}
+"#footerArea": {
+	height: Ti.UI.SIZE,
+	layout: "vertical"
+},
+"#footerTopBorder": {
+	height: 1, left: 0, right: 0,
+	backgroundColor: "#007bff"
+}

@@ -1,8 +1,9 @@
-{"table":[{"name":"Hydrogen","number":1,"symbol":"H","mass":1.00794,"melting_point":"-259.14","boiling_point":"-252.87","radius":53},
+{"table":[
+ {"name":"Hydrogen","number":1,"symbol":"H","mass":1.00794,"melting_point":"-259.14","boiling_point":"-252.87","radius":53},
  {"name":"Helium","number":2,"symbol":"He","mass":4.002602,"melting_point":"n/a","boiling_point":"-268.93","radius":31},
  {"name":"Lithium","number":3,"symbol":"Li","mass":6.941,"melting_point":"180.54","boiling_point":"1342","radius":167},
  {"name":"Beryllium","number":4,"symbol":"Be","mass":9.012182,"melting_point":"1287","boiling_point":"2470","radius":112},
- {"name":"Boron","number":5,"symbol":"B","mass":10.811,"melting_point":"2075","boiling_point":"4000","radius":87},
+ {"name":"Boron","number":5,"symbol":"B","mass":10.811,"melting_point":"2075","boiling_point":"3927","radius":87},
  {"name":"Carbon","number":6,"symbol":"C","mass":12.0107,"melting_point":"3550","boiling_point":"4027","radius":67},
  {"name":"Nitrogen","number":7,"symbol":"N","mass":14.0067,"melting_point":"-210.1","boiling_point":"-195.79","radius":56},
  {"name":"Oxygen","number":8,"symbol":"O","mass":15.9994,"melting_point":"-218.3","boiling_point":"-182.9","radius":48},
@@ -19,4 +20,3 @@
  {"name":"Potassium","number":19,"symbol":"K","mass":39.0983,"melting_point":"63.38","boiling_point":"759","radius":243},
  {"name":"Calcium","number":20,"symbol":"Ca","mass":40.078,"melting_point":"194","boiling_point":"1484","radius":194}
 ]}
-

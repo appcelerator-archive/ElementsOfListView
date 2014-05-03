@@ -1,4 +1,5 @@
-{"table":[{"name":"Mendelevium","number":101,"symbol":"Md","mass":258,"melting_point":"827","radius":220,"stability":"unstable"},
+{"table":[
+ {"name":"Mendelevium","number":101,"symbol":"Md","mass":258,"melting_point":"827","radius":220,"stability":"unstable"},
  {"name":"Nobelium","number":102,"symbol":"No","mass":259,"melting_point":"827","radius":220,"stability":"unstable"},
  {"name":"Lawrencium","number":103,"symbol":"Lr","mass":262,"melting_point":"1627","radius":220,"stability":"unstable"},
  {"name":"Rutherfordium","number":104,"symbol":"Rf","mass":267,"radius":214,"stability":"unstable"},

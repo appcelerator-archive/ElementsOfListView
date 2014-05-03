@@ -1,4 +1,5 @@
-{"table":[{"name":"Promethium","number":61,"symbol":"Pm","mass":145,"melting_point":"1100","boiling_point":"3E3","radius":205,"stability":"unstable"},
+{"table":[
+ {"name":"Promethium","number":61,"symbol":"Pm","mass":145,"melting_point":"1100","boiling_point":"3E3","radius":205,"stability":"unstable"},
  {"name":"Samarium","number":62,"symbol":"Sm","mass":150.36,"melting_point":"1072","boiling_point":"1803","radius":238},
  {"name":"Europium","number":63,"symbol":"Eu","mass":151.964,"melting_point":"822","boiling_point":"1527","radius":231},
  {"name":"Gadolinium","number":64,"symbol":"Gd","mass":157.25,"melting_point":"1313","boiling_point":"3250","radius":233},

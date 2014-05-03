@@ -1,4 +1,5 @@
-{"table":[{"name":"Scandium","number":21,"symbol":"Sc","mass":44.955914,"melting_point":"1541","boiling_point":"2838","radius":184},
+{"table":[
+ {"name":"Scandium","number":21,"symbol":"Sc","mass":44.955914,"melting_point":"1541","boiling_point":"2838","radius":184},
  {"name":"Titanium","number":22,"symbol":"Ti","mass":47.867,"melting_point":"1668","boiling_point":"3287","radius":176},
  {"name":"Vanadium","number":23,"symbol":"V","mass":50.9415,"melting_point":"1910","boiling_point":"3407","radius":171},
  {"name":"Chromium","number":24,"symbol":"Cr","mass":51.9961,"melting_point":"1907","boiling_point":"2671","radius":166},

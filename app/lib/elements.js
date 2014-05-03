@@ -1,3 +1,4 @@
+
 var elements = {
 	defaults:{"melting_point":"unknown","boiling_point":"unknown","stability":"stable","wikilink":"http://en.m.wikipedia.org/wiki/{name}"},
 	files:["elements0.json","elements1.json","elements2.json","elements3.json","elements4.json","elements5.json"],
@@ -7,8 +8,11 @@ var elements = {
 	 *	Adds more elements to the elementsList if possible
 	 */
  	addData : function() {
+
+		var scientificNotation = require('science/scientificnotation');
+		
 		if(elements.files.length > 0) {
-			var newElements = JSON.parse(loadFile(elements.files.shift())).table;
+			var newElements = JSON.parse(loadFile('elementdata/'+elements.files.shift())).table;
 			// fill in unknown values
 			for(var i = 0; i < newElements.length; i++) {
 				for(var j in elements.defaults) {
@@ -24,8 +28,8 @@ var elements = {
 						newElements[i][j] = defaultVal;
 					}
 				}
-				newElements[i].melting_point = decodeScientificNotation(newElements[i].melting_point);
-				newElements[i].boiling_point = decodeScientificNotation(newElements[i].boiling_point);
+				newElements[i].melting_point = scientificNotation.prettyPrint(newElements[i].melting_point, false);
+				newElements[i].boiling_point = scientificNotation.prettyPrint(newElements[i].boiling_point, false);
 			}
 			elements.table = elements.table.concat(newElements);
 			return newElements;
@@ -34,25 +38,6 @@ var elements = {
 		}
 	}
 };
-
-function decodeScientificNotation(numberAsString) {
-	if(_.contains(["n/a", "unknown", "sublimes"], numberAsString)) {
-		return {text:numberAsString};
-	} else if(-1 != numberAsString.indexOf('E')) {
-		
-		Ti.API.debug("elements::decodeScientificNotation - numberAsString = \"" + numberAsString + "\"");
-		
-		// assumes exponent part is between 0 and 5 inclusive.
-		var exp = ['\u2070','\u00b9','\u00b2','\u00b3','\u2074','\u2075'][numberAsString.slice(-1)];
-		var newNumberAsString = numberAsString.replace(/E[0-9]$/, "\u00d710"+exp);
-
-		Ti.API.debug("elements::decodeScientificNotation - decoded number = \"" + newNumberAsString + "\"");
-
-		return {text: newNumberAsString, val: Number(numberAsString)};
-	} else {
-		return {text: numberAsString, val: Number(numberAsString)};
-	}
-}
 	
 	
 /**

@@ -1,4 +1,5 @@
-{"table":[{"name":"Thallium","number":81,"symbol":"Tl","mass":204.3833,"melting_point":"304","boiling_point":"1473","radius":156},
+{"table":[
+ {"name":"Thallium","number":81,"symbol":"Tl","mass":204.3833,"melting_point":"304","boiling_point":"1473","radius":156},
  {"name":"Lead","number":82,"symbol":"Pb","mass":207.2,"melting_point":"327.46","boiling_point":"1749","radius":154},
  {"name":"Bismuth","number":83,"symbol":"Bi","mass":208.9804,"melting_point":"271.3","boiling_point":"1564","radius":143,"stability":"unstable"},
  {"name":"Polonium","number":84,"symbol":"Po","mass":209,"melting_point":"254","boiling_point":"962","radius":135,"stability":"unstable"},

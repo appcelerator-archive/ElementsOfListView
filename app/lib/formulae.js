@@ -94,3 +94,39 @@ exports.temperatureColor = function(element, temperature) {
 	}
 };
 
+/**
+ * Calculates the position of the element on the periodic table. The table is wide-form, ie the Lanthanides and Actinides are placed inline
+ * with the other elements.  Hydrogen is {row:1,col:1}, Helium is {row:1,col:36}
+ * @param {Number} number
+ */
+exports.position = function(number) {
+	var nobleGasses = [2,10,18,36,54,86,118,150]; // the 150 is purely a guess for future-proofing purposes, nothing over 
+												  // 118 has been discovered.
+	var gaps = [2,5,13,21,39]; // there are no known gaps after 39, a couple dozen other elements would have to be discovered
+							   // to merit adding a gap before the lanthanides and actinides.
+	var totalColumns = 32;
+
+	var result = {};
+
+	// hardcoded hydrogen to make math for other elements easier
+	if(number == 1) {
+		return {row: 0, column: 1};
+	}
+
+	for(var row = 0; row < nobleGasses.length; row++) {
+		if(number < nobleGasses[row]) {
+			result.row = row;
+			break;
+		}
+		if(number == nobleGasses[row]) {
+			// noble gas, handle like this to make math easier for other elements
+			return {row: row, column: totalColumns};
+		}
+	}
+	if(row >= gaps.length || number < gaps[row]) {
+		result.column = number - nobleGasses[row-1];
+	} else {
+		result.column = totalColumns - (nobleGasses[row]-number);
+	}
+	return result;
+};

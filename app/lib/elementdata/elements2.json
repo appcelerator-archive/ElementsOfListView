@@ -1,4 +1,5 @@
-{"table":[{"name":"Niobium","number":41,"symbol":"Nb","mass":92.90638,"melting_point":"2477","boiling_point":"4744","radius":198},
+{"table":[
+ {"name":"Niobium","number":41,"symbol":"Nb","mass":92.90638,"melting_point":"2477","boiling_point":"4744","radius":198},
  {"name":"Molybdenum","number":42,"symbol":"Mo","mass":95.96,"melting_point":"2623","boiling_point":"4639","radius":190},
  {"name":"Technetium","number":43,"symbol":"Tc","mass":98,"melting_point":"2157","boiling_point":"4265","radius":183,"stability":"unstable"},
  {"name":"Ruthenium","number":44,"symbol":"Ru","mass":101.07,"melting_point":"2334","boiling_point":"4150","radius":178},

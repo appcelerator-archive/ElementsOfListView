@@ -1,6 +1,6 @@
 # Elements Of ListView
 
-Tutorial: [Elements of ListView.pdf]
+Tutorial: [Elements of ListView.pdf](Elements of ListView.pdf)
 
 ListView is a bit daunting to anybody who hasn’t used it before. Its structure is completely different from TableView or any other Titanium UI element. However, anybody who’s used TableView knows that when a table gets too large, it slows down, it consumes memory, it scrolls in fits and starts, and the device becomes less responsive.
 
